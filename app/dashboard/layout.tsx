@@ -1,5 +1,15 @@
 import SideNav from '@/app/ui/dashboard/sidenav';
+import { Metadata } from 'next';
  
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Acme Dashboard | @lllariogonzalez',
+    default: 'Acme Dashboard by @tr1um7h',
+  },
+  description: 'The official Next.js Course Dashboard, built with App Router.',
+  // metadataBase: new URL('https://nextjs-dashboard-acme.vercel.app'),
+  metadataBase: new URL('https://nextjs-dashboard-git-main-tr1um7hs-projects.vercel.app'),
+};
 // root layout will be shared across all pages in your application. 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
