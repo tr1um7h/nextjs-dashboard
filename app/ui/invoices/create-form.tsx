@@ -10,13 +10,14 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useActionState } from 'react';
 
-import { useFormState } from 'react-dom';
+// import { useFormState } from 'react-dom';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} };
   // const [state, formAction] = useActionState(createInvoice, initialState);
-  const [state, formAction] = useFormState(createInvoice, initialState);
+  const [state, formAction] = useActionState(createInvoice, initialState);
 
   return (
     <form action={formAction}>
