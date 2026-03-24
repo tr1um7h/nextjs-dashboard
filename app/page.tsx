@@ -50,6 +50,7 @@ export default function Page() {
           {/* <img src="/hero-desktop.png" alt="Screenshots of the dashbaord project showding desktop version" /> */}
           <Image src="/hero-desktop.png"
             width={1000} height={700}
+            // md:block 表示 当屏幕宽度达到 md 时，显示该图片
             className='hidden md:block' 
             alt="Screenshots of the dashbaord project showding desktop version"
           />
@@ -57,6 +58,7 @@ export default function Page() {
             src="/hero-mobile.png"
             width={560}
             height={620}
+            
             className="block md:hidden"
             alt="Screenshot of the dashboard project showing mobile version"
           />

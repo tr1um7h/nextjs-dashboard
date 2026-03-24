@@ -32,6 +32,7 @@ export default async function Page(props: {
             <Search placeholder="Search invoices..." />
             <CreateInvoice />
         </div>
+        {/* SSR: Suspense 用于异步加载，key用于检测当前条件是否变化 */}
          <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
             <Table query={query} currentPage={currentPage} />
         </Suspense>
