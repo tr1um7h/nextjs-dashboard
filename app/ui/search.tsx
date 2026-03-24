@@ -1,17 +1,20 @@
 'use client';
+//  This is a Client Component, which means you can use event listeners and hooks
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
 export default function Search({ placeholder }: { placeholder: string }) {
+  // read searchParams on current page
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
   
   // function handleSearch(term: string) {
+  // Debouncing is a programming practice that limits the rate at which a function can fire
   const handleSearch = useDebouncedCallback((term) => {
-    console.log(term);
+    console.log(`Searching... ${term}`);
 
     // once use client, it uses client-state
     const params = new URLSearchParams(searchParams);
@@ -21,6 +24,9 @@ export default function Search({ placeholder }: { placeholder: string }) {
     } else {
       params.delete('query');
     }
+
+    // useRouter - Enables navigation between routes within client components programmatically. 
+    // replace and change route
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
@@ -35,6 +41,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
+        // since you're not using state, you can use defaultValue
         defaultValue={searchParams.get('query')?.toString()}
       />
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
