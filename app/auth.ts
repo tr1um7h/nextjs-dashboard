@@ -20,15 +20,21 @@ async function getUser(email: string): Promise<User | undefined> {
  
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
+
+  // providers is an array where you list different login options such as Google or GitHub. 
+  // For this course, we will be using credentials.
+  // There are other alternative providers such as OAuth or email
   providers: [
     Credentials({
       async authorize(credentials) {
+        // Validate credentials
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
  
           if (parsedCredentials.success) {
             const { email, password } = parsedCredentials.data;
+            // Fetch user from database
             const user = await getUser(email);
             if (!user) return null;
             const passwordsMatch = await bcrypt.compare(password, user.password);
@@ -38,6 +44,7 @@ export const { auth, signIn, signOut } = NextAuth({
           }
 
         console.log('Invalid credentials');
+
         // prevent login
         return null;
       },

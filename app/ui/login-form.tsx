@@ -67,6 +67,7 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
+        {/* 当用户登录成功后，服务器会读取这个值，将用户重定向到原本想要访问的页面 */}
         <input type="hidden" name="redirectTo" value={callbackUrl} />
         <Button className="mt-4 w-full" aria-disabled={isPending}>
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
@@ -78,6 +79,7 @@ export default function LoginForm() {
         >
           {/* Add form errors here */}
           {errorMessage && (
+            // 如果有 error，展示在这里
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
               <p className="text-sm text-red-500">{errorMessage}</p>
